@@ -9,7 +9,8 @@ module.exports.Rigidbody = function (entity) {
 };
 
 exports.Rigidbody.prototype.updatePosition = function () {
-    this.entity.transform += (this.force * Time.deltaTime());
+    this.entity.transform.previousPosition = this.entity.transform.position;
+    this.entity.transform.position += (this.force * Time.deltaTime());
 };
 
 module.exports.Rigidbody.prototype.addForce = function (force) {

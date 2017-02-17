@@ -8,22 +8,27 @@ exports.CollisionEngine.prototype.addCollider = function (collider) {
 
 exports.CollisionEngine.prototype.checkCollisions = function () {
     // TODO: take into account changed position due to entity position offset
+    // TODO: create separate broad and narrow collision detection
     for(i = 0; i < this.allColliders.length; i++) {
         for(x = 0; x < this.allColliders.length - 1; x++) {
-            if (this.allColliders[i].x < this.allColliders[x].x + this.allColliders[x].width &&
-                this.allColliders[i].x + this.allColliders[i].width > this.allColliders[x].x &&
-                this.allColliders[i].y < this.allColliders[x].y + this.allColliders[x].height &&
-                this.allColliders[i].height + this.allColliders[i].y > this.allColliders[x].y) {
-                    this.resolveCollisions(i, x);
+            var colliderA = this.allColliders[i];
+            var colliderB = this.allColliders[x];
+
+            if (colliderA.x < colliderB.x + colliderB.width &&
+                colliderA.x + colliderA.width > colliderB.x &&
+                colliderA.y < colliderB.y + colliderB.height &&
+                colliderA.height + colliderA.y > colliderB.y) {
+                    this.resolveCollision(colliderA, colliderB);
             }
         }
     }
 };
 
-exports.CollisionEngine.protype.resolveCollisione = function (indexA, indexB) {
-    var colliderA = this.allColliders[indexA];
-    var colliderB = this.allColliders[indexB];
-    // Find closest sides
-    // Move object so no collision is happening
-    // Apply half equal force in opposite direction
+exports.CollisionEngine.protype.resolveCollisione = function (colliderA, colliderB) {
+    // TODO: bounce the objects properly, taking angles of incidence etc into account.
+    colliderA.entity.transform.position = colliderA.entity.transform.previousPosition;
+    colliderA.entity.rigidbody.force.invert();
+
+    colliderB.entity.transform.position = colliderB.entity.transform.previousPosition;
+    colliderB.entity.rigidbody.force.invert();
 };

@@ -1,7 +1,7 @@
 exports.Collider = function (entity) {
     this.x = x;
     this.y = y;
-    this.width = sizeX;
-    this.height = sizeY;
+    this.w = sizeX;
+    this.h = sizeY;
     this.entity = entity;
 };
