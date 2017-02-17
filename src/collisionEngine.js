@@ -24,11 +24,16 @@ exports.CollisionEngine.prototype.checkCollisions = function () {
     }
 };
 
-exports.CollisionEngine.protype.resolveCollisione = function (colliderA, colliderB) {
+exports.CollisionEngine.prototype.resolveCollision = function (colliderA, colliderB) {
     // TODO: bounce the objects properly, taking angles of incidence etc into account.
-    colliderA.entity.transform.position = colliderA.entity.transform.previousPosition;
-    colliderA.entity.rigidbody.force.invert();
-
-    colliderB.entity.transform.position = colliderB.entity.transform.previousPosition;
-    colliderB.entity.rigidbody.force.invert();
+    if(!colliderA.isTrigger && !colliderB.isTrigger) {
+        colliderA.entity.transform.position = colliderA.entity.transform.previousPosition;
+        colliderA.entity.rigidbody.force.invert();
+        colliderB.entity.transform.position = colliderB.entity.transform.previousPosition;
+        colliderB.entity.rigidbody.force.invert();
+    } else if(colliderA.isTrigger) {
+        colliderA.trigger();
+    } else if(colliderB.isTrigger) {
+        colliderB.trigger();
+    }
 };

@@ -1,8 +1,9 @@
+var Vector2 = require('./vector2.js').Vector2;
+var Vector3 = require('./vector3.js').Vector3;
+
 function Main () {
     var Entity = require('./entity.js').Entity;
     var Rigidbody = require('./rigidbody.js').Rigidbody;
-    var Vector2 = require('./vector2.js').Vector2;
-    var Vector3 = require('./vector3.js').Vector3;
     var CollisionEngine = require('./collisionEngine.js').CollisionEngine;
     var Time = require('./time.js').Time;
     var startTime;
@@ -45,6 +46,6 @@ function Main () {
 }
 
 var main = new Main();
-var testEntity = instantiate("testEntity", new main.Vector2(0, 0));
+var testEntity = instantiate("testEntity", new Vector2(0, 0));
 var secondTestEntity = instantiate("secondTestEntity", new main.Vector2(3, 3));
 start();
