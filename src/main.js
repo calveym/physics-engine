@@ -4,11 +4,13 @@ function Main () {
     var Vector2 = require('./vector2.js').Vector2;
     var Vector3 = require('./vector3.js').Vector3;
     var CollisionEngine = require('./collisionEngine.js').CollisionEngine;
+    var Time = require('./time.js').Time;
     var startTime;
     var thisTick;
     var lastTick;
     var timeSinceStart;
     this.collisionEngine = new CollisionEngine();
+    this.time = new Time();
     this.entities = [];
     this.tick = 0;
 
