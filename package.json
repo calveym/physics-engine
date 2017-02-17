@@ -1,0 +1,11 @@
+{
+  "name": "physics-engine",
+  "version": "0.1.4",
+  "description": "A simple 2d web based physics and soon to be game engine.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mike Calvey",
+  "license": "UNLICENSED"
+}
