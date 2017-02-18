@@ -5,6 +5,7 @@ exports.Rigidbody = function (entity) {
     this.velocity = new Vector2(0, 0);
     this.useGravity = false;
     this.isKinematic = false;
+    this.grounded = false;
     this.friction = 0;
     this.drag = 1;
     this.entity = entity;
@@ -13,8 +14,8 @@ exports.Rigidbody = function (entity) {
 
 exports.Rigidbody.prototype.updatePosition = function () {
     this.entity.transform.previousPosition = this.entity.transform.position;
-    this.entity.transform.position += (this.velocity * Time.deltaTime());
-    if(useGravity) {
+    this.entity.transform.position += (this.velocity * this.entity.main.time.deltaTime());
+    if(this.useGravity && !this.grounded) {
         this.addForce(this.gravity * this.entity.main.time.deltaTime());
     }
     this.addForce(this.drag * -this.velocity * this.entity.main.time.deltaTime());

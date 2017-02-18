@@ -11,24 +11,24 @@ function Main () {
     var lastTick;
     var timeSinceStart;
     this.collisionEngine = new CollisionEngine();
-    this.time = new Time();
+    this.time = new Time(this);
     this.entities = [];
     this.tick = 0;
 
     gameLoop = function () {
         updateTime();
-        collisionEngine.checkCollisions();
-        for(i = 0; i < entities.length; i++) {
-            entities[i].update();
+        main.collisionEngine.checkCollisions();
+        for(i = 0; i < main.entities.length; i++) {
+            main.entities[i].update();
         }
-        tick++;
+        this.tick++;
         setTimeout(gameLoop, 10);
     };
 
     start = function () {
         startTime = new Date().getTime();
-        for(i = 0; i < entities.length; i++) {
-            entities[i].start();
+        for(i = 0; i < main.entities.length; i++) {
+            main.entities[i].start();
         }
         this.gameLoop();
     };
@@ -39,13 +39,14 @@ function Main () {
     };
 
     instantiate = function (name, position) {
-        var newEntity = new Entity(this, name, position);
-        entities.push(newEntity);
+        var newEntity = new Entity(main, name, position);
+        main.entities.push(newEntity);
         return newEntity;
     };
 }
 
 var main = new Main();
+// console.log(main);
 var testEntity = instantiate("testEntity", new Vector2(0, 0));
-var secondTestEntity = instantiate("secondTestEntity", new main.Vector2(3, 3));
+var secondTestEntity = instantiate("secondTestEntity", new Vector2(3, 3));
 start();

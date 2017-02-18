@@ -1,8 +1,8 @@
 exports.Collider = function (entity, x, y, w, h) {
     this.x = x;
     this.y = y;
-    this.w = sizeX;
-    this.h = sizeY;
+    this.w = w;
+    this.h = h;
     this.entity = entity;
     this.isTrigger = false;
 };

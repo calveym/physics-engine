@@ -1,9 +1,11 @@
-exports.Time = function () {};
+exports.Time = function (main) {
+    this.main = main;
+};
 
 exports.Time.prototype.deltaTime = function () {
-    return thisTick - lastTick;
+    return this.main.thisTick - this.main.lastTick;
 };
 
 exports.Time.prototype.timeSinceStart = function () {
-    return thisTick - startTick;
+    return this.main.thisTick - this.main.startTick;
 };

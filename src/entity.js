@@ -1,6 +1,8 @@
 var Transform = require("./transform").Transform;
 var Rigidbody = require("./rigidbody").Rigidbody;
+var Mesh = require("./mesh").Mesh;
 var Collider = require("./collider").Collider;
+var MeshRenderer = require("./meshRenderer").MeshRenderer;
 
 exports.Entity = function (main, name, position) {
     this.main = main;
@@ -14,7 +16,6 @@ exports.Entity = function (main, name, position) {
 };
 
 exports.Entity.prototype.start = function () {
-    this.rigidbody.enablePhysics();
 };
 
 exports.Entity.prototype.update = function () {
